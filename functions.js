@@ -153,9 +153,73 @@ function squareList(inputNumber) {
 //    return squaredNumbers;
 // };
 
-// SORT AN ARRAY ALPHABETICALLY USING THE SORT METHOD
+// SORT AN ARRAY ALPHABETICALLY USING THE SORT METHOD -----
+// .sort() mutates the order of the original array
 function sortMethod(letter) {
    // user input is a letter
    let arr = ["a", letter, "z", "j", "h", "b"]; // creates array with random letters as well as users letter input above
    return arr.sort(); // sorts the array from a-z
+}
+
+// RETURN A SORTED ARRAY WITHOUT CHANGING THE ORIGINAL ARRAY -----
+function nonMutatingSort(num) {
+   // user input needs to be a number
+   var globalArray = [5, 6, 3, 2, 9, num]; // adds input number to the given array
+   return globalArray.slice().sort(); // takes the array, slices (creates a new array, did not mutate original global array), sorts new array
+
+   // shorter version
+   //return [...arr].sort()
+}
+
+// SPLIT A STRING INTO AN ARRAY USING SPLIT METHOD
+// .split() splits a string into a new array of strings, does not mutate, takes delimeter as argument
+// delimiter can be a character to use to break up the string. space = array of words, empty string = array for each character in string
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
+function splitMethod(input1) {
+   return (newString = input1.split(" "));
+}
+
+// COMBINE AN ARRAY INTO A STRING USING THE JOIN METHOD
+// .join() joins elements of an array together to make a string. does not mutate original array
+function joinMethod(input1) {
+   let string = input1; // creates variable called string which takes the user input
+   let disectedString = string.split(/\W/); // return array of strings from input
+   // split() splits the given input into an array of strings, the delimiter (/\W/) is a regular expression which filters non alpha-numeric characters out
+   let sentenceString = disectedString.join(" "); // .join() takes the elements of the array above and creates a new string. the delimiter (" ") spaces the string. notice the space in between quotes
+   return sentenceString;
+}
+
+// APPLY FUNCITONAL PRORAMMING TO CONVERT STRINGS TO URL SLUGS
+function urlSlug(input1) {
+   // takes any input
+   return input1
+      .split(/\W/) // splits the input into a new array of strings and removes all non alpha numeric characters with the (/\W/) delimitor
+      .filter((word) => {
+         // filters through each word in the input and returns every array that does not contain an empty string
+         return word !== "";
+      })
+      .join("-") // joins each element in array with -
+      .toLowerCase(); // converst the array to all lowercase letters
+}
+
+// USE EVERY MOTHOD TO CHECK THAT EVERY ELEMENT IN AN ARRAY MEETS A CRITERIA
+// .every() works with arrays to check if ALL elements pass a particular test
+function everyMethod(input) {
+   let number = [input]; // creates variable that turns input into an array
+   let result = number.every(function (num) {
+      // takes number variable and checks to see if all numbers are > 0
+      return num > 0; // particular test
+   });
+   return result; // returns true if > 0, false if < 0
+}
+
+// USE THE SOME METHOD TO CHECK THAT ANY ELEMENTS IN AN ARRAY MEET A CRITERIA
+// .some() works with arrays to check if AT LEAST ONE of the elements pass a particular test
+function someMethod(input) {
+   let number = [input]; // creates variable that turns input into an array
+   let result = number.every(function (num) {
+      // takes number variable and checks to see one of the numbers are > 0
+      return num > 0; // particular test
+   });
+   return result; // returns true if > 0, false if < 0
 }
