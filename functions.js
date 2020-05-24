@@ -44,7 +44,10 @@
 //    return subTotal + shipping;
 // };
 
-// IMPLEMENT THE FILTER METHOD ON A PROTOTYPE
+// IMPLEMENT THE FILTER METHOD ON A PROTOTYPE ------
+
+// more info on callback
+// !!!!! https://www.freecodecamp.org/forum/t/implement-map-on-a-prototype-callback/356826/3 !!!!!!
 
 function filterMethod(num) {
    // creates function called filterMethod, takes a number as the argument/input
@@ -57,7 +60,7 @@ function filterMethod(num) {
          index++ // loops through the array above that contains the number you input and grabs each index
       )
          if (callback(arr[index]))
-            // calls the function on line 65 with callback and passes in each index of the array
+            // calls the function on line 68 with callback and passes in each index of the array
             newArray.push(arr[index]); // pushes the result of the callback into the empty newArray -- if the number has remainder of 1, push to newArray
 
       return newArray; // returns new populated array
@@ -67,4 +70,92 @@ function filterMethod(num) {
       return item % 2 === 1; // filters through the array and checks if the number in the array divided by 2 with a remainder or 1 === 1
    });
    return inputArr;
+}
+
+// RETURN PART OF AN ARRAY USING SLICE METHOD ------
+// .slice() method returns a COPY of the sliced elements in an array, does not mutate original array
+
+function sliceMethod(animalArray, input1, input2) {
+   // creates function that takes an array and 2 user inputs
+   var animalArray = ["Cat", "Dog", "Tiger", "Zebra", "Ant"]; // create default array which is passed into function argument
+
+   var slicedArray = animalArray.slice(input1, input2); // creates variable that slices the given array based on user inputs
+   return slicedArray; // returns new sliced array
+}
+
+// RETURN PART OF AN ARRAY USING SPLICE METHOD ------
+// .splice() method splices given inputs out of an array, mutates the arrary and returns the spliced array
+// takes 2 arguments. where to start splice (in the index) and how many items to remove
+
+function spliceMethod(input1, input2) {
+   var animalArray = ["Cat", "Dog", "Tiger", "Zebra", "Ant"];
+   var splicedArray = animalArray.splice(input1, input2); // creates a variable that holds the spliced items. input1 = which index to start, input2 = how many items to remove
+   return splicedArray; // returns mutated array with items spliced
+}
+
+// COMBINE TWO ARRAYS USING THE CONCAT METHOD ------
+// for arrays, .concat() is called on one array then the array that is wished to be concated to the end is called in
+
+function nonMutatingConcat(input1, input2) {
+   return input1.concat(input2); // takes the first input and concatenates the second input onto the end
+   // returns new concatenated inputs
+}
+
+// ADD ELEMENTS TO THE END OF AN ARRAY USING CONCAT INSTEAD OF PUSH ------
+// .push() mutates the original array it is pushed onto
+// .concat() is imutable
+
+function nonMutatingPush(newName) {
+   let array = ["justin", "lance", "ralph", "attapon"];
+   return array.concat(newName); // pushes new name onto the end of the existing array and returns updated array
+}
+
+// USE THE REDUCE METHOD TO ANALYZE DATA
+// more on map filter and reduce: https://www.youtube.com/watch?v=UXiYii0Y7Nw
+let numbers = [5, 38, 57, 22, 12, 1];
+// reduce passes in 2 arguments, accumulator and current value
+// current value is the value of the current item in the array
+// accumulator is the item + current value
+// acc = 0 + cur = 5 -> acc = 5 + cur = 38 -> acc = 43 + cur = 57 -> acc = 100 cur = 22 -> acc = 122 cur = 12 -> acc = 134 curr = 1 -> result should be 135
+let reducedValue = numbers.reduce((acc, cur) => acc + cur);
+console.log(reducedValue);
+// function getRating(watchList) {
+//    var count = 0;
+//    var averageRating =
+//       watchList.reduce((sum, movie) => {
+//          if (movie.Director == "Christopher Nolan") {
+//             count += 1;
+//             return sum + parseFloat(movie.imdbRating);
+//          }
+//          return sum;
+//       }, 0) / count;
+
+//    return averageRating;
+// }
+
+// USE HIGHTER-ORDER FUNCTIONS MAP, FILTER, OR REDUCE TO SOLVE A COMPLEX PROBLEM ------
+
+function squareList(inputNumber) {
+   // create funciton that takes a number as an input
+   let numberList = [inputNumber]; // sets an array with the value of the input number to a variable numberList
+   let positiveIntegers = numberList.filter(
+      // loops through the given number (in this case there is only one number)
+      (num) => Number.isInteger(num) && num > 0 // checks if number is a whole number (no decimal) && if number is > 0 (no negative numbers)
+   );
+   let squaredNumbers = positiveIntegers.map((num) => num * num); // if the inputNumber meets reqs above, maps through the input (1 number in this case). multiplies the inputNumber * inputNumber to get square root
+   return squaredNumbers;
+}
+// const squareList = (arr) => {
+//    let positiveIntegers = arr.filter((num) => Number.isInteger(num) && num > 0);
+
+//    let squaredNumbers = positiveIntegers.map((num) => num * num);
+
+//    return squaredNumbers;
+// };
+
+// SORT AN ARRAY ALPHABETICALLY USING THE SORT METHOD
+function sortMethod(letter) {
+   // user input is a letter
+   let arr = ["a", letter, "z", "j", "h", "b"]; // creates array with random letters as well as users letter input above
+   return arr.sort(); // sorts the array from a-z
 }
