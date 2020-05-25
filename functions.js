@@ -176,7 +176,9 @@ function nonMutatingSort(num) {
 // delimiter can be a character to use to break up the string. space = array of words, empty string = array for each character in string
 // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions
 function splitMethod(input1) {
-   return (newString = input1.split(" "));
+   // takes multiple words
+   let newString = input1.split(" "); // creates a new array of the input words
+   return newString;
 }
 
 // COMBINE AN ARRAY INTO A STRING USING THE JOIN METHOD
